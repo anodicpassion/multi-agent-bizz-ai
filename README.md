@@ -8,35 +8,23 @@ A production-grade multi-agent AI architecture enabling autonomous task executio
 ![Docker](https://img.shields.io/badge/Docker-Ready-blue)
 
 ## 🏗️ Architecture
+```mermaid
+flowchart TD
 
-```
-                          ┌─────────────────┐
-                          │   FastAPI Client │
-                          └────────┬────────┘
-                                   │
-                          ┌────────▼────────┐
-                          │   Supervisor     │
-                          │   (Router Agent) │
-                          └────────┬────────┘
-                    ┌──────────────┼──────────────┐
-              ┌─────▼─────┐ ┌─────▼─────┐ ┌──────▼──────┐
-              │  Research  │ │ Reasoning │ │    Task     │
-              │   Agent    │ │   Agent   │ │  Executor   │
-              └─────┬──────┘ └───────────┘ └──────┬──────┘
-                    │                              │
-         ┌──────┐  ▼                       ┌──────▼──────┐
-         │ RAG  │◄─┤                       │ DB │Cal│API │
-         │Vector│  │                       └─────────────┘
-         │  DB  │  │
-         └──────┘  ▼
-              ┌─────────────┐
-              │Communication│
-              │    Agent     │
-              └──────┬──────┘
-                     │
-              ┌──────▼──────┐
-              │    Email     │
-              └─────────────┘
+A[FastAPI Client] --> B["Supervisor\n(Router Agent)"]
+
+B --> C[Research Agent]
+B --> D[Reasoning Agent]
+B --> E[Task Executor]
+
+C --> F["RAG\nVector DB"]
+C --> G[Communication Agent]
+
+G --> H[Email]
+
+E --> I[DB]
+E --> J[Calculator]
+E --> K[API]
 ```
 
 ### Agents
